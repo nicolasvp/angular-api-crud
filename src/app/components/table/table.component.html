@@ -1,0 +1,34 @@
+<div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-6">
+            <h4 class="card-title">Campeones</h4>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-info pull-right" type="button" name="button" (click)="showModal()"><i class="fa fa-plus"></i> Nuevo</button>
+        </div>
+      </div>
+        <h6 class="card-subtitle">Lista de todos los campeones ingresados</h6>
+        <div class="table-responsive m-t-40">
+            <table id="myTable" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                        <th>Linea</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let champion of champions; let i = index">
+                      <td>{{ i }}</td>
+                      <td>{{ champion.name }}</td>
+                      <td>{{ champion.type.name }}</td>
+                      <td>{{ champion.line.name }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <app-modal></app-modal>
+</div>
