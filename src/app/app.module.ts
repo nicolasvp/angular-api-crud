@@ -14,6 +14,8 @@ import { HomeComponent } from './components/home/home.component';
 import { TableComponent } from './components/table/table.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ModalComponent } from './components/modal/modal.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,13 +23,15 @@ import { ModalComponent } from './components/modal/modal.component';
     HomeComponent,
     TableComponent,
     NavbarComponent,
-    ModalComponent
+    ModalComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     app_routing,
-    FormsModule
+    FormsModule,
+    NgxDatatableModule
   ],
   providers: [
     ChampionsService

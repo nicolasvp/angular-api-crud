@@ -9,42 +9,40 @@ import { ChampionsService } from '../../services/champions.service';
 export class TableComponent implements OnInit {
 
   champions:any[] = [];
+  champs_filtered:any[] = [];
+  temp:any[] = [];
 
   constructor( private _championsService: ChampionsService ) { }
 
   ngOnInit() {
-    $('#myTable').DataTable({
-            dom: 'ftrip',
-            "language": {
-                "decimal": "",
-                "emptyTable": "Sin datos disponibles",
-                "info": "Mostrando _START_ a _END_ de _TOTAL_ entradas",
-                "infoEmpty": "Mostrando 0 a 0 de 0 entradas",
-                "infoFiltered": "(Filtrado de un total de _MAX_ entradas)",
-                "infoPostFix": "",
-                "thousands": ".",
-                "lengthMenu": "Mostrar _MENU_ entradas",
-                "loadingRecords": "Cargando...",
-                "processing": "Procesando...",
-                "search": "Buscar:",
-                "zeroRecords": "Ningún registro encontrado.",
-                "paginate": {
-                    "first": "Primero",
-                    "last": "Ultimo",
-                    "next": "Siguiente",
-                    "previous": "Anterior"
-                }
-            }
-        });
       this._championsService.getChampions()
-      .subscribe( champion => this.champions = champion );
-  }
+      .subscribe( ( champion ) => {
+        var filter = [];
 
+        for ( let i of champion ) {
+          var data = { name: i.name, type: i.type.name, line: i.line.name };
+          filter.push(data);
+        }
+          this.champions = filter;
+      } );
+      this.temp = this.champions;
+  }
   // Muestra modal
   showModal(){
-  console.log(this.champions);
     $("#championModal").modal('show');
   }
 
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
 
+    // filter our data
+    const temp = this.temp.filter(function(d) {
+      return d.name.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this.rows = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
+  }
 }

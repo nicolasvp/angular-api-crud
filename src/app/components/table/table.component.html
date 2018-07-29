@@ -9,26 +9,38 @@
         </div>
       </div>
         <h6 class="card-subtitle">Lista de todos los campeones ingresados</h6>
-        <div class="table-responsive m-t-40">
-            <table id="myTable" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Tipo</th>
-                        <th>Linea</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let champion of champions; let i = index">
-                      <td>{{ i }}</td>
-                      <td>{{ champion.name }}</td>
-                      <td>{{ champion.type.name }}</td>
-                      <td>{{ champion.line.name }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <input
+                type='text'
+                style='padding:8px;margin:15px auto;width:30%;'
+                placeholder='Buscar...'
+                (keyup)='updateFilter($event)'
+              />
+              <ngx-datatable
+                #table
+                class='material'
+                [columnMode]="'force'"
+                [headerHeight]="50"
+                [footerHeight]="50"
+                [rowHeight]="'auto'"
+                [limit]="10"
+                [rows]='champions'
+                >
+                <ngx-datatable-column name="Nombre" prop="name">
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Tipo" prop="type">
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Linea" prop="line">
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Acciones" prop="actions">
+                  <ng-template ngx-datatable-cell-template>
+                    <div class="btn-group">
+                        <button class="btn btn-info" (click)="showModal()" title="Ver"><i class="fa fa-eye"></i></button>
+                        <button class="btn btn-warning" (click)="showModal()" title="Editar"><i class="fa fa-pencil"></i></button>
+                        <button class="btn btn-danger" (click)="showModal()" title="Eliminar"><i class="fa fa-trash"></i></button>
+                    </div>
+                  </ng-template>
+                </ngx-datatable-column>
+              </ngx-datatable>
     </div>
     <app-modal></app-modal>
 </div>

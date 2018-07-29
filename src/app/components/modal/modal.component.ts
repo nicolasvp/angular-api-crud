@@ -4,13 +4,12 @@ import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
+  templateUrl: './modal.component.html'
 })
 export class ModalComponent implements OnInit {
 
-  lines:any[] = [];
-  types:any[] = [];
+  lines:any = [];
+  types:any = [];
 
   champion:Object = {
     name: "",
