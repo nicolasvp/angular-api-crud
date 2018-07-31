@@ -8,6 +8,7 @@ import {app_routing} from './app.routes';
 
 // Servicios
 import { ChampionsService } from './services/champions.service';
+import { LoginService } from './services/login.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -34,7 +35,8 @@ import { LoginComponent } from './components/login/login.component';
     NgxDatatableModule
   ],
   providers: [
-    ChampionsService
+    ChampionsService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })
