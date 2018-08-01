@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class TokenService {
 
   private iss = {
-    login : 'http://laravel-api-angular.test/api/login'
+    login : 'http://localhost/laravel-api-angular/public/api/login'
   }
 
   constructor() { }
@@ -32,7 +32,7 @@ export class TokenService {
 
     if( token ) {
       const payload = this.payload( token );
-      
+
       if( payload ){
         return (payload.iss === this.iss.login) ? true : false;
       }

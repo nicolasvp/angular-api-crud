@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegisterService {
 
-  private baseUrl = 'http://laravel-api-angular.test/api';
-  
+  private baseUrl = 'http://localhost/laravel-api-angular/public/api';
+
   constructor( private _http: HttpClient ) { }
 
   register( data ) {

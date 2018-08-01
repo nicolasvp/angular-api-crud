@@ -24,6 +24,9 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 
+// NGX-BOOTSTRAP
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +42,8 @@ import { RegisterComponent } from './components/register/register.component';
     HttpClientModule,
     app_routing,
     FormsModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    ModalModule.forRoot()
   ],
   providers: [
     ChampionsService,

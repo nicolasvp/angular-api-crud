@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, Input, EventEmitter } from '@angular/core';
 import { ChampionsService } from '../../services/champions.service';
 import { NgForm } from '@angular/forms';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 @Component({
   selector: 'app-modal',
@@ -8,6 +10,7 @@ import { NgForm } from '@angular/forms';
 })
 export class ModalComponent implements OnInit {
 
+  modalRef: BsModalRef;
   lines:any = [];
   types:any = [];
 
@@ -17,7 +20,10 @@ export class ModalComponent implements OnInit {
     type: ""
   }
 
-  constructor( private _championsService: ChampionsService ) { }
+  // Propiedades emitidas hacia el padre
+  @Input() modalStatus: boolean = false;
+
+  constructor( private _championsService: ChampionsService, private modalService: BsModalService ) { }
 
   ngOnInit() {
     this._championsService.getLines()
@@ -26,6 +32,10 @@ export class ModalComponent implements OnInit {
     this._championsService.getTypes()
     .subscribe( type => this.types = type );
 
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
   store( champForm:NgForm ) {

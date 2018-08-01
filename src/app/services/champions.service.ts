@@ -9,7 +9,7 @@ export class ChampionsService {
   private champions:any[];
   private lines:any[];
   private types:any[];
-  private baseUrl = 'http://laravel-api-angular.test/api';
+  private baseUrl = 'http://localhost/laravel-api-angular/public/api';
 
   constructor( private _http: HttpClient ) {
   }

@@ -23,22 +23,15 @@ export class TableComponent implements OnInit {
       .subscribe( ( champion ) => {
         var filter = [];
 
-        for ( let i of champion ) {
-          var data = { name: i.name, type: i.type.name, line: i.line.name };
+        for (let key of Object.keys(champion)) {
+          let value = champion[key];
+          var data = { name: value.name, type: value.type.name, line: value.line.name };
           filter.push(data);
         }
+
           this.champions = filter;
       } );
       this.temp = this.champions;
-  }
-
-  /**
-   * Importante: Cambiar esta forma de como muestra el modal, lanza error el selector de JQuery al compilar
-   * @return [description]
-   */
-  // Muestra modal
-  showModal(){
-    $("#championModal").modal('show');
   }
 
   updateFilter(event) {
