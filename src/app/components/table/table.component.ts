@@ -11,6 +11,10 @@ export class TableComponent implements OnInit {
   champions:any[] = [];
   champs_filtered:any[] = [];
   temp:any[] = [];
+  table = {
+    offset: 0
+  };
+  rows :any[] = [];
 
   constructor( private _championsService: ChampionsService ) { }
 
@@ -27,6 +31,11 @@ export class TableComponent implements OnInit {
       } );
       this.temp = this.champions;
   }
+
+  /**
+   * Importante: Cambiar esta forma de como muestra el modal, lanza error el selector de JQuery al compilar
+   * @return [description]
+   */
   // Muestra modal
   showModal(){
     $("#championModal").modal('show');

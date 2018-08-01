@@ -4,13 +4,13 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class RegisterService {
 
   private baseUrl = 'http://laravel-api-angular.test/api';
-
+  
   constructor( private _http: HttpClient ) { }
 
-  login( data ) {
-    return this._http.post(this.baseUrl.concat('/login'), data);
+  register( data ) {
+    return this._http.post(this.baseUrl.concat('/register'), data);
   }
 }

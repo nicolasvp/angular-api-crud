@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChampionsService } from '../../services/champions.service';
-import {NgForm} from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-modal',

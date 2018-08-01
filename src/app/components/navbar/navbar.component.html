@@ -4,7 +4,7 @@
         <!-- Logo -->
         <!-- ============================================================== -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="#">
                 <!-- Logo icon --><b>
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
@@ -33,7 +33,7 @@
                 <!-- ============================================================== -->
                 <!-- Search -->
                 <!-- ============================================================== -->
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="loggedIn">
                     <form class="app-search d-none d-md-block d-lg-block">
                         <input type="text" class="form-control" placeholder="Buscar">
                     </form>
@@ -43,29 +43,17 @@
             <!-- User profile and search -->
             <!-- ============================================================== -->
             <ul class="navbar-nav my-lg-0">
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="!loggedIn">
                   <a class="nav-link waves-effect waves-dark" [routerLink]="['/login']">Login</a>
                 </li>
                 <!-- ============================================================== -->
                 <!-- User Profile -->
                 <!-- ============================================================== -->
-                <li class="nav-item dropdown u-pro">
+                <li class="nav-item dropdown u-pro" *ngIf="loggedIn">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/assets/images/users/1.jpg" alt="user" class=""> <span class="hidden-md-down"> Nicolás &nbsp;<i class="fa fa-angle-down"></i></span> </a>
                     <div class="dropdown-menu dropdown-menu-right animated flipInY">
                         <!-- text-->
-                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> My Profile</a>
-                        <!-- text-->
-                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a>
-                        <!-- text-->
-                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-email"></i> Inbox</a>
-                        <!-- text-->
-                        <div class="dropdown-divider"></div>
-                        <!-- text-->
-                        <a href="javascript:void(0)" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
-                        <!-- text-->
-                        <div class="dropdown-divider"></div>
-                        <!-- text-->
-                        <a href="login.html" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
+                        <a href="#" (click)="logout($event)" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a>
                         <!-- text-->
                     </div>
                 </li>
@@ -80,7 +68,7 @@
 <!-- ============================================================== -->
 <!-- Left Sidebar - style you can find in sidebar.scss  -->
 <!-- ============================================================== -->
-<aside class="left-sidebar">
+<aside class="left-sidebar" *ngIf="loggedIn">
     <!-- Sidebar scroll-->
     <div class="scroll-sidebar">
         <!-- Sidebar navigation-->

@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-4">
+  </div>
+  <div class="col-4">
+    <div class="login-register">
+        <div class="login-box card">
+            <div class="card-body">
+                <form class="form-horizontal form-material" #registerForm=ngForm (ngSubmit)="onSubmit()">
+                    <h3 class="box-title m-b-20">Registre sus datos</h3>
+                    <div class="alert alert-danger" [hidden]="error_list.length == 0"> <i class="ti-user"></i>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                        <ul>
+                          <li *ngFor="let error of error_list">
+                            {{ error }}
+                          </li>
+                        </ul>
+                    </div>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input class="form-control" name="name" type="text" required="" placeholder="Nombre" [(ngModel)]="form.name" required>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <div class="col-xs-12">
+                            <input class="form-control" name="email" type="text" required="" placeholder="Correo" [(ngModel)]="form.email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="password" name="password" required="" placeholder="Contraseña" [(ngModel)]="form.password" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <input class="form-control" type="password" name="password_confirmation" placeholder="Confirmar Contraseña" [(ngModel)]="form.password_confirmation" required="">
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <div class="col-xs-12 p-b-20">
+                            <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit" [disabled]="!registerForm.valid">Registrarse</button>
+                            <a class="btn btn-primary btn-rounded m-t-10" name="back" [routerLink]="['/login']">Volver</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="col-4">
+  </div>
+</div>

@@ -8,7 +8,12 @@ import {app_routing} from './app.routes';
 
 // Servicios
 import { ChampionsService } from './services/champions.service';
+import { RegisterService } from './services/register.service';
 import { LoginService } from './services/login.service';
+import { AuthService } from './services/auth.service';
+import { TokenService } from './services/token.service';
+import { AfterLoginService } from './services/after-login.service';
+import { BeforeLoginService } from './services/before-login.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -17,6 +22,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +31,8 @@ import { LoginComponent } from './components/login/login.component';
     TableComponent,
     NavbarComponent,
     ModalComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +43,12 @@ import { LoginComponent } from './components/login/login.component';
   ],
   providers: [
     ChampionsService,
-    LoginService
+    RegisterService,
+    LoginService,
+    AuthService,
+    TokenService,
+    AfterLoginService,
+    BeforeLoginService
   ],
   bootstrap: [AppComponent]
 })
