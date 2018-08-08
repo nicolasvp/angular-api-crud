@@ -12,6 +12,8 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  private loader = false;
+
   private form = {
     email: null,
     password: null
@@ -26,6 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loader = true;
     this._loginService.login( this.form )
     .subscribe( data => this.handleResponse( data ),
                 error => this.handleError( error )
@@ -33,7 +36,8 @@ export class LoginComponent implements OnInit {
   }
 
   handleError( error ) {
-    this.error = error.error.error;
+    this.loader = false;
+    this.error = error.error;
   }
 
   handleResponse( data ) {

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 // Rutas
@@ -27,6 +27,10 @@ import { RegisterComponent } from './components/register/register.component';
 // NGX-BOOTSTRAP
 import { ModalModule } from 'ngx-bootstrap/modal';
 
+// Helpers
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +56,9 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     AuthService,
     TokenService,
     AfterLoginService,
-    BeforeLoginService
+    BeforeLoginService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
