@@ -1,4 +1,3 @@
-
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { TableComponent } from './components/table/table.component';
@@ -12,7 +11,7 @@ const app_routes: Routes = [
   { path: 'champions', component: TableComponent, canActivate: [AfterLoginService] },
   { path: 'login', component: LoginComponent, canActivate: [BeforeLoginService] },
   { path: 'register', component: RegisterComponent, canActivate: [BeforeLoginService] },
-  { path: '**', pathMatch: 'full', redirectTo: 'home' }
+  { path: '**', pathMatch: 'full', redirectTo: 'login' }
 ];
 
 export const app_routing = RouterModule.forRoot(app_routes, { useHash:true });

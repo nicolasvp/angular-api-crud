@@ -1,47 +1,68 @@
-<div class="row">
-  <div class="col-4">
-  </div>
-  <div class="col-4">
-    <div class="login-register">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CRUD">
+    <meta name="author" content="nicolas">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Angular Laravel Crud</title>
+    <!-- page css -->
+    <link href="assets/dist/css/pages/login-register-lock.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="assets/dist/css/style.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="horizontal-nav skin-megna card-no-border">
+<section id="wrapper">
+    <div class="login-register" style="background-color: #333333;">
         <div class="login-box card">
             <div class="card-body">
-                <form class="form-horizontal form-material" #loginForm=ngForm (ngSubmit)="onSubmit()">
-                    <h3 class="box-title m-b-20">Ingrese sus datos</h3>
-                    <div class="alert alert-danger" [hidden]="!error"> <i class="ti-user"></i> {{ error }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-                    </div>
-                    <div class="form-group ">
-                        <div class="col-xs-12">
-                            <input class="form-control" name="email" type="text" required="" placeholder="Correo" [(ngModel)]="form.email" required> </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-xs-12">
-                            <input class="form-control" type="password" name="password" required="" placeholder="Contraseña" [(ngModel)]="form.password" required> </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label" for="customCheck1">Recordarme</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group text-center">
-                        <div class="col-xs-12 p-b-20">
-                            <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit" [disabled]="!loginForm.valid">Ingresar</button>
-                            <img style="margin-top: 10px;" *ngIf="loader" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                        </div>
-                    </div>
-                    <div class="form-group m-b-0">
-                        <div class="col-sm-12 text-center">
-                            ¿No tienes cuenta? <a class="text-info m-l-5" [routerLink]="['/register']"><b>Registrarse</b></a>
-                        </div>
-                    </div>
-                </form>
+              <form class="form-horizontal form-material" #loginForm=ngForm (ngSubmit)="onSubmit()">
+                  <h3 class="box-title m-b-20">Ingrese sus datos</h3>
+                  <div class="alert alert-danger" [hidden]="!error"> <i class="ti-user"></i>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                    {{ error }}
+                  </div>
+                  <div class="form-group ">
+                      <div class="col-xs-12">
+                          <input class="form-control" name="email" type="text" required="" placeholder="Correo" [(ngModel)]="form.email" required> </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="col-xs-12">
+                          <input class="form-control" type="password" name="password" required="" placeholder="Contraseña" [(ngModel)]="form.password" required> </div>
+                  </div>
+                  <div class="form-group row">
+                      <div class="col-md-12">
+                          <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input" id="customCheck1">
+                              <label class="custom-control-label" for="customCheck1">Recordarme</label>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="form-group text-center">
+                      <div class="col-xs-12 p-b-20">
+                          <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit" [disabled]="!loginForm.valid">Ingresar</button>
+                          <img style="margin-top: 10px;" *ngIf="loader" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                      </div>
+                  </div>
+                  <div class="form-group m-b-0">
+                      <div class="col-sm-12 text-center">
+                          ¿No tienes cuenta? <a class="text-info m-l-5" [routerLink]="['/register']"><b>Registrarse</b></a>
+                      </div>
+                  </div>
+              </form>
             </div>
         </div>
     </div>
-  </div>
-  <div class="col-4">
-  </div>
-</div>
+</section>
+<!-- End Wrapper -->
+</body>
+</html>
