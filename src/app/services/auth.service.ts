@@ -13,7 +13,7 @@ export class AuthService {
 
   constructor(private _token: TokenService) { }
 
-  changeAuthStatus(value : boolean) {
+  changeAuthStatus(value: boolean) {
     this.loggedIn.next( value );
   }
 

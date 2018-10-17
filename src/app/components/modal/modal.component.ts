@@ -2,7 +2,8 @@ import { Component, OnInit, TemplateRef, Input, EventEmitter } from '@angular/co
 import { ChampionsService } from '../../services/champions.service';
 import { NgForm } from '@angular/forms';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+// import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalRef } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-modal',
@@ -10,18 +11,22 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 })
 export class ModalComponent implements OnInit {
 
-  modalRef: BsModalRef;
-  lines:any = [];
-  types:any = [];
+  bsModalRef: BsModalRef;
+  lines: any = [];
+  types: any = [];
 
-  champion:Object = {
-    name: "",
-    line: "",
-    type: ""
-  }
+  champion: Object = {
+    name: '',
+    line: '',
+    type: ''
+  };
+
+  title: string;
+  closeBtnName: string;
+  list: any[] = [];
 
   // Propiedades emitidas hacia el padre
-  @Input() modalStatus: boolean = false;
+  @Input() championData: any = {};
 
   constructor( private _championsService: ChampionsService, private modalService: BsModalService ) { }
 
@@ -31,16 +36,28 @@ export class ModalComponent implements OnInit {
 
     this._championsService.getTypes()
     .subscribe( type => this.types = type );
-
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
+  openModal() {
+    const initialState = {
+      list: [
+        'Open a modal with component',
+        'Pass your data',
+        'Do something else',
+        '...'
+      ],
+      title: 'Modal with component'
+    };
+    this.bsModalRef = this.modalService.show(ModalComponent, {initialState});
+    this.bsModalRef.content.closeBtnName = 'Close';
   }
 
-  store( champForm:NgForm ) {
+  closeModal() {
+    this.bsModalRef.hide();
+  }
+
+  store( champForm: NgForm ) {
     console.log(champForm);
     console.log(this.champion);
   }
-
 }

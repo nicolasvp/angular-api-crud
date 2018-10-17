@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  private loggedIn : boolean;
+  loggedIn: boolean;
 
   constructor( private _auth: AuthService, private _router: Router, private _token: TokenService ) { }
 
@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
     this._auth.authStatus.subscribe( value => this.loggedIn = value );
   }
 
-  logout( event : MouseEvent ) {
+  logout( event: MouseEvent ) {
     event.preventDefault();
     this._auth.changeAuthStatus( false );
     this._token.removeToken();

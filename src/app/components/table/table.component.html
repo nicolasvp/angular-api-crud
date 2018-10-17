@@ -5,42 +5,68 @@
             <h4 class="card-title">Campeones</h4>
         </div>
         <div class="col-6">
-            <button class="btn btn-info pull-right" type="button" name="button" (click)="openModal(template)"><i class="fa fa-plus"></i> Nuevo</button>
+            <button class="btn btn-info pull-right" type="button" name="button" (click)="openModal(create)"><i class="fa fa-plus"></i> Nuevo</button>
         </div>
       </div>
         <h6 class="card-subtitle">Lista de todos los campeones ingresados</h6>
-        <input
-                type='text'
-                style='padding:8px;margin:15px auto;width:30%;'
-                placeholder='Buscar...'
-                (keyup)='updateFilter($event)'
-              />
-              <ngx-datatable
-                #table
-                class='material'
-                [columnMode]="'force'"
-                [headerHeight]="50"
-                [footerHeight]="50"
-                [rowHeight]="'auto'"
-                [limit]="10"
-                [rows]='champions'
-                >
-                <ngx-datatable-column name="Nombre" prop="name">
-                </ngx-datatable-column>
-                <ngx-datatable-column name="Tipo" prop="type">
-                </ngx-datatable-column>
-                <ngx-datatable-column name="Linea" prop="line">
-                </ngx-datatable-column>
-                <ngx-datatable-column name="Acciones" prop="actions">
-                  <ng-template ngx-datatable-cell-template>
-                    <div class="btn-group">
-                        <button class="btn btn-info" title="Ver"><i class="fa fa-eye"></i></button>
-                        <button class="btn btn-warning" title="Editar"><i class="fa fa-pencil"></i></button>
-                        <button class="btn btn-danger" title="Eliminar"><i class="fa fa-trash"></i></button>
-                    </div>
-                  </ng-template>
-                </ngx-datatable-column>
-              </ngx-datatable>
+          <ngx-datatable
+            #table
+            class='material'
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [limit]="10"
+            [rows]='champions'
+            >
+            <ngx-datatable-column name="Nombre" prop="name">
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Tipo" prop="type">
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Linea" prop="line">
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Acciones" prop="actions">
+              <ng-template ngx-datatable-cell-template>
+                <div class="btn-group">
+                    <button class="btn btn-info" title="Ver" (click)="openModal(show)"><i class="fa fa-eye"></i></button>
+                    <button class="btn btn-warning" title="Editar" (click)="openModal(edit)"><i class="fa fa-pencil"></i></button>
+                    <button class="btn btn-danger" title="Eliminar"><i class="fa fa-trash"></i></button>
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+      <ng-template #create>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Crear</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          This is a modal.
+        </div>
+      </ng-template>
+      <ng-template #edit>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Editar</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          This is a modal.
+        </div>
+      </ng-template>
+      <ng-template #show>
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Ver</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          This is a modal.
+        </div>
+      </ng-template>
     </div>
-    <app-modal (modalStatus)="openModal( $event )"></app-modal>
 </div>

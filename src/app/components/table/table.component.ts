@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { ChampionsService } from '../../services/champions.service';
+import { ModalComponent } from '../modal/modal.component';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 @Component({
   selector: 'app-table',
@@ -7,31 +10,26 @@ import { ChampionsService } from '../../services/champions.service';
   styles: []
 })
 export class TableComponent implements OnInit {
+  // Decorador para poder llamar funciones desde el componente padre al componente hijo
+  @ViewChild(ModalComponent)
+  private modalComponent: ModalComponent;
 
-  champions:any[] = [];
-  champs_filtered:any[] = [];
-  temp:any[] = [];
+  champions: any[] = [];
+  temp: any[] = [];
   table = {
     offset: 0
   };
-  rows :any[] = [];
 
-  constructor( private _championsService: ChampionsService ) { }
+  modalRef: BsModalRef;
+
+  constructor( private _championsService: ChampionsService, private modalService: BsModalService ) { }
 
   ngOnInit() {
       this._championsService.getChampions()
-      .subscribe( ( champion ) => {
-        var filter = [];
-
-        for (let key of Object.keys(champion)) {
-          let value = champion[key];
-          var data = { name: value.name, type: value.type.name, line: value.line.name };
-          filter.push(data);
-        }
-
-          this.champions = filter;
+      .subscribe( ( data: any ) => {
+        this.champions = data;
+        this.temp = data;
       } );
-      this.temp = this.champions;
   }
 
   updateFilter(event) {
@@ -43,8 +41,14 @@ export class TableComponent implements OnInit {
     });
 
     // update the rows
-    this.rows = temp;
+    this.champions = temp;
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
+  }
+
+  // Abre el modal desde el componente hijo usando la variable modalComponent
+  openModal(template: TemplateRef<any>) {
+    // this.modalComponent.openModal();
+    this.modalRef = this.modalService.show(template);
   }
 }
