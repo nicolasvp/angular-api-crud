@@ -25,11 +25,11 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Linea" prop="line">
             </ngx-datatable-column>
-            <ngx-datatable-column name="Acciones" prop="actions">
-              <ng-template ngx-datatable-cell-template>
+            <ngx-datatable-column name="Acciones" prop="id">
+              <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
                 <div class="btn-group">
-                    <button class="btn btn-info" title="Ver" (click)="openModal(show)"><i class="fa fa-eye"></i></button>
-                    <button class="btn btn-warning" title="Editar" (click)="openModal(edit)"><i class="fa fa-pencil"></i></button>
+                    <button class="btn btn-info" title="Ver" (click)="showChampion(show,value)"><i class="fa fa-eye"></i></button>
+                    <button class="btn btn-warning" title="Editar" (click)="editChampion(edit,value)"><i class="fa fa-pencil"></i></button>
                     <button class="btn btn-danger" title="Eliminar"><i class="fa fa-trash"></i></button>
                 </div>
               </ng-template>
@@ -59,13 +59,31 @@
       </ng-template>
       <ng-template #show>
         <div class="modal-header">
-          <h4 class="modal-title pull-left">Ver</h4>
+          <h4 class="modal-title pull-left">Detalle del Campeón</h4>
           <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          This is a modal.
+          <div class="card">
+              <div class="el-card-item">
+                  <div *ngIf="champion.image; else default_image" class="el-card-avatar text-center">
+                    <img src="#" class="img-circle" width="233" alt="{{ champion.name }}">
+                  </div>
+                  <div class="el-card-content m-t-20 text-center">
+                      <h3 class="box-title">{{ champion.name }}</h3>
+                      <small>{{ champion.type }}</small>
+                      <br>
+                      <small>{{ champion.line }}</small>
+                      <br>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #default_image>
+        <div class="el-card-avatar text-center">
+          <img class="img-circle" width="233" src="assets/assets/images/users/4.jpg" alt="LOL">
         </div>
       </ng-template>
     </div>

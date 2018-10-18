@@ -25,9 +25,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [
-              "node_modules/jquery/dist/jquery.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -126,4 +124,4 @@
     }
   },
   "defaultProject": "angular-laravel-crud"
-}
+} 
