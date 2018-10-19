@@ -29,7 +29,15 @@ export class ChampionsService {
 
 	getChampion(id: Number) {
 		return this.getQuery(`champion/${id}`).pipe(map((data: any) => {
-			const champ = { id: data[0].id, name: data[0].name, type: data[0].type.name, line: data[0].line.name, image: data[0].image };
+			const champ = {
+				id: data[0].id,
+				name: data[0].name,
+				type_id: data[0].type.id,
+				type: data[0].type.name,
+				line_id: data[0].line.id,
+				line: data[0].line.name,
+				image: data[0].image
+			};
 			return champ;
 		}));
 	}

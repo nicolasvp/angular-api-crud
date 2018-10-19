@@ -3,11 +3,16 @@ import { ChampionsService } from '../../services/champions.service';
 import { ModalComponent } from '../modal/modal.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
 	selector: 'app-table',
 	templateUrl: './table.component.html',
-	styles: []
+	styles: [`
+		.ng-valid.ng-touched:not(form){
+			border: 1px solid red;
+		}
+		`]
 })
 export class TableComponent implements OnInit {
 	// Decorador para poder llamar funciones desde el componente padre al componente hijo
@@ -15,7 +20,16 @@ export class TableComponent implements OnInit {
 	private modalComponent: ModalComponent;
 
 	champions: any[] = [];
-	champion: any[] = [];
+	champion: Object = {
+		name: "",
+		type: "",
+		type_id: "",
+		line: "",
+		line_id: "",
+		image: ""
+	};
+	lines: any[] = [];
+	types: any[] = [];
 	temp: any[] = [];
 	table = {
 		offset: 0
@@ -64,8 +78,21 @@ export class TableComponent implements OnInit {
 		this._championsService.getChampion(id)
 			.subscribe((data: any) => {
 				this.champion = data;
-				console.log(this.champion)
+			});
+
+		this._championsService.getLines()
+			.subscribe((data: any) => {
+				this.lines = data;
+			});
+
+		this._championsService.getTypes()
+			.subscribe((data: any) => {
+				this.types = data;
 				this.openModal(template)
 			});
+	}
+
+	updateChampion(form: NgForm) {
+		console.log(form, form.value)
 	}
 }

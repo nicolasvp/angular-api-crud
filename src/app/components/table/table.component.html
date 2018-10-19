@@ -47,15 +47,38 @@
         </div>
       </ng-template>
       <ng-template #edit>
+        <form (ngSubmit)="updateChampion(formChamp)" #formChamp="ngForm" novalidate="">
         <div class="modal-header">
           <h4 class="modal-title pull-left">Editar</h4>
           <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          This is a modal.
+        <div class="modal-body fadeIn animated">
+            <div class="form-group">
+              <label for="">Nombre</label>
+              <input class="form-control" type="text" name="name" [(ngModel)]="champion.name" required maxlength="100">
+            </div>
+            <div class="form-group">
+              <label for="">Tipo</label>
+              <select class="form-control" name="type" [(ngModel)]="champion.type_id" required>
+                <option value="">Seleccione</option>
+                <option *ngFor="let type of types" [value]="type.id">{{ type.name }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="">Linea</label>
+              <select class="form-control" name="line" [(ngModel)]="champion.line_id" required>
+                <option value="">Seleccione</option>
+                <option *ngFor="let line of lines" [value]="line.id">{{ line.name }}</option>
+              </select>
+            </div>
         </div>
+        <div class="modal-footer">
+          <button class="btn btn-info" type="submit" name="accept_button">Aceptar</button>
+          <button class="btn btn-default" type="button" name="cancel_button" (click)="modalRef.hide()">Cancelar</button>
+        </div>
+        </form>
       </ng-template>
       <ng-template #show>
         <div class="modal-header">
@@ -65,7 +88,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <div class="card">
+          <div class="card bounceIn animated">
               <div class="el-card-item">
                   <div *ngIf="champion.image; else default_image" class="el-card-avatar text-center">
                     <img src="#" class="img-circle" width="233" alt="{{ champion.name }}">
