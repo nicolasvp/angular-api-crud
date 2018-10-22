@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
 	selector: 'app-table',
 	templateUrl: './table.component.html',
 	styles: [`
-		.ng-valid.ng-touched:not(form){
+		.ng-invalid.ng-touched:not(form){
 			border: 1px solid red;
 		}
 		`]
@@ -74,12 +74,31 @@ export class TableComponent implements OnInit {
 			});
 	}
 
+	// Abre modal para crear campeon
+	createChampion(template: TemplateRef<any>) {
+		this.getData(template);
+	}
+
+	storeChampion(form: NgForm) {
+		console.log(form)
+	}
+
+	// Abre modal con la info del campeon y con la info de lineas y tipos, recibe como parametro un template y un id numérico
 	editChampion(template: TemplateRef<any>, id: Number) {
 		this._championsService.getChampion(id)
 			.subscribe((data: any) => {
 				this.champion = data;
 			});
+		this.getData(template);
+	}
 
+	// Actualiza la información del campeon, recibe como parametro un formulario del tipo NgForm
+	updateChampion(form: NgForm) {
+		console.log(form, form.value)
+	}
+
+	// Obtiene la informacion de las lineas y los tipos, luego abre modal
+	getData(template) {
 		this._championsService.getLines()
 			.subscribe((data: any) => {
 				this.lines = data;
@@ -90,9 +109,5 @@ export class TableComponent implements OnInit {
 				this.types = data;
 				this.openModal(template)
 			});
-	}
-
-	updateChampion(form: NgForm) {
-		console.log(form, form.value)
 	}
 }
