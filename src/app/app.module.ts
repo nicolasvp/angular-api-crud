@@ -1,10 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Rutas
-import {app_routing} from './app.routes';
+import { app_routing } from './app.routes';
 
 // Servicios
 import { ChampionsService } from './services/champions.service';
@@ -32,37 +32,38 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    TableComponent,
-    NavbarComponent,
-    ModalComponent,
-    LoginComponent,
-    RegisterComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    app_routing,
-    FormsModule,
-    NgxDatatableModule,
-    ModalModule.forRoot()
-  ],
-  providers: [
-    ChampionsService,
-    RegisterService,
-    LoginService,
-    AuthService,
-    TokenService,
-    AfterLoginService,
-    BeforeLoginService,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    ModalComponent
-  ],
+	declarations: [
+		AppComponent,
+		HomeComponent,
+		TableComponent,
+		NavbarComponent,
+		ModalComponent,
+		LoginComponent,
+		RegisterComponent
+	],
+	imports: [
+		BrowserModule,
+		HttpClientModule,
+		app_routing,
+		FormsModule,
+		NgxDatatableModule,
+		ModalModule.forRoot(),
+		ReactiveFormsModule
+	],
+	providers: [
+		ChampionsService,
+		RegisterService,
+		LoginService,
+		AuthService,
+		TokenService,
+		AfterLoginService,
+		BeforeLoginService,
+		{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+	],
+	bootstrap: [AppComponent],
+	entryComponents: [
+		ModalComponent
+	],
 })
 export class AppModule { }

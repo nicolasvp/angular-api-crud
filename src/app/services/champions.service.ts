@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
 	providedIn: 'root'
@@ -11,6 +13,7 @@ export class ChampionsService {
 	}
 
 	filter = [];
+
 	getQuery(parameter) {
 		// return this._http.get( `http://localhost/laravel-api-angular/public/api/${ parameter }` );
 		return this._http.get(`http://laravel-api-angular.test/api/${parameter}`);
@@ -30,13 +33,9 @@ export class ChampionsService {
 	getChampion(id: Number) {
 		return this.getQuery(`champion/${id}`).pipe(map((data: any) => {
 			const champ = {
-				id: data[0].id,
 				name: data[0].name,
-				type_id: data[0].type.id,
-				type: data[0].type.name,
-				line_id: data[0].line.id,
-				line: data[0].line.name,
-				image: data[0].image
+				type: data[0].type.id,
+				line: data[0].line.id
 			};
 			return champ;
 		}));
@@ -48,6 +47,25 @@ export class ChampionsService {
 
 	getTypes() {
 		return this.getQuery('types');
+	}
+
+	saveChampion(champion: Object) {
+		let body = JSON.stringify(champion);
+		const httpOptions = {
+			headers: new HttpHeaders({
+				'Content-Type': 'application/json'
+			})
+		};
+		let url = 'http://laravel-api-angular.test/api/champion';
+		return this._http.post(url, body, httpOptions).pipe(map((data: any) => {
+			const champ = {
+				name: data[0].name,
+				type: data[0].type.name,
+				line: data[0].line.name,
+				id: data[0].id
+			}
+			return champ;
+		}));
 	}
 
 }
