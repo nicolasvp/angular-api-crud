@@ -61,7 +61,12 @@ export class TableComponent implements OnInit {
 	}
 
 	openModal(template: TemplateRef<any>) {
+		this.resetForm();
 		this.modalRef = this.modalService.show(template);
+	}
+
+	closeModal(){
+			this.modalRef.hide();
 	}
 
 	showChampion(template: TemplateRef<any>, id: Number) {
@@ -77,23 +82,23 @@ export class TableComponent implements OnInit {
 		this.getData(template);
 	}
 
+	// Guarda el campeon y lo agrega al array de campeones
 	storeChampion() {
 		this._championsService.saveChampion(this.form.value)
 			.subscribe((data: any) => {
-				this.champions.push(data);
-				console.log(this.champions)
+				this.champions = [...this.champions, data];
+				this.closeModal();
 			});
-		//this.resetForm();
 	}
 
 	// Abre modal con la info del campeon y con la info de lineas y tipos, recibe como parametro un template y un id numérico
 	editChampion(template: TemplateRef<any>, id: Number) {
+		this.getData(template);
 		this._championsService.getChampion(id)
 			.subscribe((data: any) => {
 				this.champion = data;
 				this.form.setValue(this.champion);
 			});
-		this.getData(template);
 	}
 
 	// Actualiza la información del campeon, recibe como parametro un formulario del tipo NgForm

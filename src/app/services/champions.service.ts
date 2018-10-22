@@ -15,8 +15,8 @@ export class ChampionsService {
 	filter = [];
 
 	getQuery(parameter) {
-		// return this._http.get( `http://localhost/laravel-api-angular/public/api/${ parameter }` );
-		return this._http.get(`http://laravel-api-angular.test/api/${parameter}`);
+		 return this._http.get( `http://localhost/laravel-api-angular/public/api/${ parameter }` );
+		// return this._http.get(`http://laravel-api-angular.test/api/${parameter}`);
 	}
 
 	getChampions() {
@@ -56,7 +56,8 @@ export class ChampionsService {
 				'Content-Type': 'application/json'
 			})
 		};
-		let url = 'http://laravel-api-angular.test/api/champion';
+		// let url = 'http://laravel-api-angular.test/api/champion';
+		let url = 'http://localhost/laravel-api-angular/public/api/champion';
 		return this._http.post(url, body, httpOptions).pipe(map((data: any) => {
 			const champ = {
 				name: data[0].name,
