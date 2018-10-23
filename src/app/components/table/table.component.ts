@@ -34,7 +34,8 @@ export class TableComponent implements OnInit {
 		this.form = new FormGroup({
 			'name': new FormControl('', [Validators.required, Validators.maxLength(100)]),
 			'type': new FormControl('', Validators.required),
-			'line': new FormControl('', Validators.required)
+			'line': new FormControl('', Validators.required),
+			'id': new FormControl('')
 		});
 	}
 
@@ -65,12 +66,12 @@ export class TableComponent implements OnInit {
 		this.modalRef = this.modalService.show(template);
 	}
 
-	closeModal(){
-			this.modalRef.hide();
+	closeModal() {
+		this.modalRef.hide();
 	}
 
 	showChampion(template: TemplateRef<any>, id: Number) {
-		this._championsService.getChampion(id)
+		this._championsService.getChampion(id, 'show')
 			.subscribe((data: any) => {
 				this.champion = data;
 				this.openModal(template)
@@ -84,7 +85,7 @@ export class TableComponent implements OnInit {
 
 	// Guarda el campeon y lo agrega al array de campeones
 	storeChampion() {
-		this._championsService.saveChampion(this.form.value)
+		this._championsService.storeChampion(this.form.value)
 			.subscribe((data: any) => {
 				this.champions = [...this.champions, data];
 				this.closeModal();
@@ -94,7 +95,7 @@ export class TableComponent implements OnInit {
 	// Abre modal con la info del campeon y con la info de lineas y tipos, recibe como parametro un template y un id numérico
 	editChampion(template: TemplateRef<any>, id: Number) {
 		this.getData(template);
-		this._championsService.getChampion(id)
+		this._championsService.getChampion(id, 'edit')
 			.subscribe((data: any) => {
 				this.champion = data;
 				this.form.setValue(this.champion);
@@ -103,8 +104,11 @@ export class TableComponent implements OnInit {
 
 	// Actualiza la información del campeon, recibe como parametro un formulario del tipo NgForm
 	updateChampion() {
-		console.log(this.form)
-		//this.resetForm();
+		this._championsService.updateChampion(this.form.value)
+			.subscribe((data: any) => {
+				this.champions = [...data];
+				this.closeModal();
+			});
 	}
 
 	// Obtiene la informacion de las lineas y los tipos, luego abre modal

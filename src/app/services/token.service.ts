@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
 export class TokenService {
 
 	private iss = {
-		login : 'http://localhost/laravel-api-angular/public/api/login'
-		//login: 'http://laravel-api-angular.test/api/login'
+		//login : 'http://localhost/laravel-api-angular/public/api/login'
+		login: 'http://laravel-api-angular.test/api/login'
 	}
 
 	constructor() { }
